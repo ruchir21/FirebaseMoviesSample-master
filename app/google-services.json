@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "1030963373658",
+    "firebase_url": "https://review-project-262ac.firebaseio.com",
+    "project_id": "review-project-262ac",
+    "storage_bucket": "review-project-262ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030963373658:android:0317680811540838",
+        "android_client_info": {
+          "package_name": "com.brillicaservices.gurjas.firebasemoviessample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030963373658-o4kehjnuksclqk8bpldu1d49715mkp09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brillicaservices.gurjas.firebasemoviessample",
+            "certificate_hash": "c062c5df254e7c252196803f6062b9294f0af1eb"
+          }
+        },
+        {
+          "client_id": "1030963373658-o1hacf38kn9vi0paujif08ojtg7ai1or.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1030963373658-o1hacf38kn9vi0paujif08ojtg7ai1or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBhV22wuljEtoVLEXUjTx5X8B649Tspe8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030963373658-o1hacf38kn9vi0paujif08ojtg7ai1or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
