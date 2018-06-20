@@ -1,69 +1,71 @@
 package com.brillicaservices.gurjas.firebasemoviessample.series;
 
-import java.util.Collection;
-
 public class SeriesModelView  {
-    String title;
-    Integer[] releaseYear;
-    String description;
-    Integer[] rating;
-    int image;
+    String name;
+    Integer Release;
+    String desc;
+    Integer Rating;
+   // int image;
 
-    public SeriesModelView(String title, String description, Integer[] releaseYear, Integer[] rating, int image) {
+    public SeriesModelView(String name, String desc, int Release, int Rating, int image) {
 
-        this.title = title;
-        this.description = description;
-        this.releaseYear = releaseYear;
-        this.rating  = rating;
-        this.image = image;
+        this.name = name;
+        this.desc = desc;
+        this.Release = Release;
+        this.Rating  = Rating;
+       // this.image = image;
     }
 
-    public SeriesModelView(String[] title1, Integer[] rat, String[] de, Integer[] rel) {
-        this.title = String.valueOf(title1);
-        this.description = String.valueOf(de);
-        this.releaseYear = rel;
-        this.rating = rat;
+    public SeriesModelView(String name1, int rat, String de, int rel) {
+        this.name = name1;
+        this.desc = String.valueOf(de);
+        this.Release = rel;
+        this.Rating = rat;
 
     }
 
-    public int getImage() {
-        return image;
+    public SeriesModelView(){
+
     }
 
-    public Integer[] getRating() {
-        return rating;
+   // public int getImage() {
+   //     return image;
+    //}
+
+    public int getRating() {
+        return Rating;
     }
 
-    public Integer[] getReleaseYear() {
-        return releaseYear;
+    public int getRelease() {
+        return Release;
     }
 
-    public String getDescription() {
-        return description;
+    public String getdesc() {
+        return desc;
     }
 
-    public String getTitle() {
-        return title;
+    public String getname() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setdesc(String desc) {
+        this.desc = desc;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+   // public void setImage(int image) {
+     //   this.image = image;
+    //}
+
+    public void setRating(int Rating) {
+        this.Rating = Rating;
     }
 
-    public void setRating(Integer[] rating) {
-        this.rating = rating;
+    public void setRelease(int Release) {
+        this.Release = Release;
     }
 
-    public void setReleaseYear(Integer[] releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setname(String name) {
+        this.name = name;
     }
 }
 

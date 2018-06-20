@@ -54,7 +54,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         void onListItemClickListener(int clickedItemIndex);
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView movieThumbnail;
         TextView movieName, movieDescription, rating;
 
@@ -74,3 +74,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
     }
 }
+
+
+
+
+
+
+
+

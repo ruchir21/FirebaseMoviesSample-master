@@ -18,15 +18,16 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesListAdapter.Se
 
     private SeriesListAdapter.ListItemClickListener itemClickListener;
     private ArrayList<MoviesModelView> studentArrayList;
-    
+
     ArrayList<SeriesModelView> seriesModelViewArrayList = new ArrayList<>();
-    public SeriesListAdapter(ArrayList<SeriesModelView> seriesModelViewArrayList){
+
+    public SeriesListAdapter(ArrayList<SeriesModelView> seriesModelViewArrayList) {
         this.seriesModelViewArrayList = seriesModelViewArrayList;
     }
 
     public SeriesListAdapter(ArrayList<MoviesModelView> studentArrayList, ListItemClickListener itemClickListener) {
         this.studentArrayList = studentArrayList;
-        this.itemClickListener= itemClickListener;
+        this.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -44,10 +45,10 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesListAdapter.Se
     public void onBindViewHolder(SeriesListAdapter.SeriesViewHolder holder, int position) {
         SeriesModelView seriesModelView = seriesModelViewArrayList.get(position);
 
-        holder.seriesThumbnail.setImageResource(seriesModelView.image);
-        holder.seriesName.setText(seriesModelView.title);
-        holder.seriesDescription.setText(seriesModelView.description);
-        holder.rating.setText(""+seriesModelView.rating+"/5");
+       // holder.seriesThumbnail.setImageResource(seriesModelView.image);
+        holder.seriesName.setText(seriesModelView.name);
+        holder.seriesDescription.setText(seriesModelView.desc);
+        holder.rating.setText("" + seriesModelView.Rating + "/5");
     }
 
     @Override
@@ -59,17 +60,28 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesListAdapter.Se
         void onListItemClickListener(int clickedItemIndex);
     }
 
-    public class SeriesViewHolder extends RecyclerView.ViewHolder {
+    public class SeriesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView seriesThumbnail;
         TextView seriesName, seriesDescription, rating;
 
         public SeriesViewHolder(View itemView) {
             super(itemView);
 
-            seriesThumbnail = itemView.findViewById(R.id.movie_thumbnail1);
+           // seriesThumbnail = itemView.findViewById(R.id.movie_thumbnail1);
             seriesName = itemView.findViewById(R.id.movie_name_title1);
             seriesDescription = itemView.findViewById(R.id.movie_description1);
             rating = itemView.findViewById(R.id.movie_rating1);
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int clickedposition=getAdapterPosition();
+            itemClickListener.onListItemClickListener(clickedposition);
+
         }
     }
-}
+
+
+    }
