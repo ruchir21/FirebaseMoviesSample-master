@@ -45,7 +45,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesListAdapter.Se
     public void onBindViewHolder(SeriesListAdapter.SeriesViewHolder holder, int position) {
         SeriesModelView seriesModelView = seriesModelViewArrayList.get(position);
 
-       // holder.seriesThumbnail.setImageResource(seriesModelView.image);
+        holder.seriesThumbnail.setImageResource(seriesModelView.image);
         holder.seriesName.setText(seriesModelView.name);
         holder.seriesDescription.setText(seriesModelView.desc);
         holder.rating.setText("" + seriesModelView.Rating + "/5");
@@ -67,7 +67,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesListAdapter.Se
         public SeriesViewHolder(View itemView) {
             super(itemView);
 
-           // seriesThumbnail = itemView.findViewById(R.id.movie_thumbnail1);
+            seriesThumbnail = itemView.findViewById(R.id.movie_thumbnail1);
             seriesName = itemView.findViewById(R.id.movie_name_title1);
             seriesDescription = itemView.findViewById(R.id.movie_description1);
             rating = itemView.findViewById(R.id.movie_rating1);

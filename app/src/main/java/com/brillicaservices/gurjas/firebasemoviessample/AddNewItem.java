@@ -1,5 +1,6 @@
 package com.brillicaservices.gurjas.firebasemoviessample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +15,19 @@ import android.widget.Toast;
 
 import com.brillicaservices.gurjas.firebasemoviessample.database.DatabaseHelper;
 import com.brillicaservices.gurjas.firebasemoviessample.movies.MoviesModelView;
+import com.brillicaservices.gurjas.firebasemoviessample.series.SeriesModelView;
+import com.brillicaservices.gurjas.firebasemoviessample.series.SpinnerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String catArray[]={"Select Genere","Series","Movies"};
-    Button save;
+    Button save,cancel;
     DatabaseHelper databaseHelper;
 
     EditText title;
@@ -34,6 +39,8 @@ public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemS
 
 
     Integer imagesArray[] = new Integer[]{
+
+
             R.drawable.avengers_infinity_war,
             R.drawable.avengers_infinity_war_imax_poster,
             R.drawable.dark_knight,
@@ -51,14 +58,31 @@ public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemS
             R.drawable.lion_king,
             R.drawable.rocky,
             R.drawable.shawshank_redemption,
+            R.drawable.wanted
+    };
+
+    Integer seriesimagesArray[] = new Integer[]{
+            R.drawable.deadpool,
+            R.drawable.fast_furious_7,
+            R.drawable.fight_club,
+            R.drawable.godfather,
+            R.drawable.hancock,
+            R.drawable.harry_potter,
+            R.drawable.inception,
+            R.drawable.into_the_wild,
+            R.drawable.iron_man_3,
+            R.drawable.pursuit_of_happiness,
+            R.drawable.john_wick,
+            R.drawable.lion_king,
+            R.drawable.rocky,
+            R.drawable.shawshank_redemption,
             R.drawable.wanted};
 
-    Spinner category, movieThumbnail;
+    Spinner category, movieThumbnail,seriesThumb;
 
     String categoryname;
-    Integer thumbname;
-
-
+    Integer thumbname,seriesthumbname;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,17 +97,27 @@ public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemS
 
 
         movieThumbnail = findViewById(R.id.item_image);
-        ArrayAdapter<Integer> movieThumbnailAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, imagesArray);
+        ArrayAdapter<Integer> movieThumbnailAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_gallery_item, imagesArray);
         movieThumbnail.setAdapter(movieThumbnailAdapter);
         movieThumbnail.setPrompt("Select Image");
         movieThumbnail.setOnItemSelectedListener(this);
 
+        seriesThumb=findViewById(R.id.item_image);
+        ArrayAdapter<Integer> seriesThumbnailAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, seriesimagesArray);
+        seriesThumb.setAdapter(seriesThumbnailAdapter);
+        seriesThumb.setPrompt("Select Image");
+        seriesThumb.setOnItemSelectedListener(this);
+
         save = findViewById(R.id.save_item);
+        cancel=findViewById(R.id.cancel_item);
         title = findViewById(R.id.item_title);
         ReleaseYear = findViewById(R.id.release_year);
         description = findViewById(R.id.item_description);
         rb=findViewById(R.id.item_rating);
         databaseHelper=new DatabaseHelper(this);
+        db=FirebaseDatabase.getInstance().getReference();
+
+
 
         save.setOnClickListener(new View.OnClickListener() {
 
@@ -103,18 +137,25 @@ public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemS
 
                     databaseHelper.addNewMovie(new MoviesModelView(Title, Description, Release_Year, rbar,thumbname));
                     studentArrayList.addAll(databaseHelper.allMovieDetails());
-                    Toast.makeText(getApplicationContext(), "Details Entered Successfully", Toast.LENGTH_LONG).show();
-
-
+                    Toast.makeText(getApplicationContext(), "Movie Details Entered Successfully", Toast.LENGTH_LONG).show();
                 }
 
-                else
+                else if (categoryname == "Series")
                 {
-
-                    Toast.makeText(getApplicationContext(), "Please Enter Details", Toast.LENGTH_LONG).show();
+                    SeriesModelView sm=new SeriesModelView(Title,Description,Release_Year,rbar,seriesthumbname);
+                    db.child(sm.getname()).setValue(sm);
+                    Toast.makeText(getApplicationContext(), "Series Details Entered Successfully", Toast.LENGTH_LONG).show();
                 }
             }
 
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AddNewItem.this,MainActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+            }
         });
     }
 
@@ -124,6 +165,7 @@ public class AddNewItem extends AppCompatActivity implements AdapterView.OnItemS
         if(itemId == R.id.item_image)
         {
             thumbname = imagesArray[position];
+            seriesthumbname=seriesimagesArray[position];
         }
         else
         {

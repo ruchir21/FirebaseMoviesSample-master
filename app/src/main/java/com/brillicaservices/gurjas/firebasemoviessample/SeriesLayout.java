@@ -25,7 +25,6 @@ import static java.lang.String.valueOf;
 
 public class SeriesLayout extends AppCompatActivity implements SeriesListAdapter.ListItemClickListener {
 
-    //DatabaseHelper db;
     RecyclerView rv;
     SeriesListAdapter recyclerAdapter;
     ArrayList<SeriesModelView> studentArrayList = new ArrayList<SeriesModelView>();
@@ -38,7 +37,6 @@ public class SeriesLayout extends AppCompatActivity implements SeriesListAdapter
         setContentView(R.layout.series_layout);
 
         rv = findViewById(R.id.recycler_view_series);
-        //db = new DatabaseHelper(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
@@ -50,20 +48,20 @@ public class SeriesLayout extends AppCompatActivity implements SeriesListAdapter
 
        databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        databaseReference.child("Series").addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
 
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
 
                     SeriesModelView seriesModelView = snapshot.getValue(SeriesModelView.class);
 
                     studentArrayList.add(seriesModelView);
                     recyclerAdapter.notifyDataSetChanged();
                 }
-
-
             }
 
             @Override
@@ -71,16 +69,7 @@ public class SeriesLayout extends AppCompatActivity implements SeriesListAdapter
 
             }
         });
-
-
-
-
-
-                //studentArrayList.add(Title1);
-
-
-
-            }
+    }
     @Override
     public void onListItemClickListener(int clickedItemIndex) {
         Toast.makeText(getApplicationContext(),studentArrayList.get(clickedItemIndex).getname(),Toast.LENGTH_LONG).show();

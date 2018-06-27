@@ -4,19 +4,19 @@ public class SeriesModelView  {
     String name;
     Integer Release;
     String desc;
-    Integer Rating;
-   // int image;
+    Float Rating;
+    int image;
 
-    public SeriesModelView(String name, String desc, int Release, int Rating, int image) {
+    public SeriesModelView(String name, String desc, int Release,float Rating, int image) {
 
         this.name = name;
         this.desc = desc;
         this.Release = Release;
         this.Rating  = Rating;
-       // this.image = image;
+        this.image = image;
     }
 
-    public SeriesModelView(String name1, int rat, String de, int rel) {
+    public SeriesModelView(String name1, float rat, String de, int rel) {
         this.name = name1;
         this.desc = String.valueOf(de);
         this.Release = rel;
@@ -28,11 +28,9 @@ public class SeriesModelView  {
 
     }
 
-   // public int getImage() {
-   //     return image;
-    //}
+    public int getImage() {return image;}
 
-    public int getRating() {
+    public float getRating() {
         return Rating;
     }
 
@@ -52,11 +50,9 @@ public class SeriesModelView  {
         this.desc = desc;
     }
 
-   // public void setImage(int image) {
-     //   this.image = image;
-    //}
+    public void setImage(int image) {this.image = image;}
 
-    public void setRating(int Rating) {
+    public void setRating(float Rating) {
         this.Rating = Rating;
     }
 
